@@ -1,0 +1,155 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+    <title>{% block title %} {% endblock title %}</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" type="text/css" href={% static 'css/bootstrap.min.css' %} />
+    <script type="text/javascript" src={% static 'js/jquery-2.1.1.min.js' %}></script>
+    <script type="text/javascript" src={% static 'js/bootstrap.min.js' %}></script>
+
+    <link rel="stylesheet" type="text/css" href={% static 'css/style.css' %} media="all">
+    <link rel="stylesheet" type="text/css" href={% static 'css/font-awesome.min.css' %} />
+
+    <script src={% static 'js/ekko-lightbox.js' %}></script>
+    <script>
+        $(function () {
+            if (navigator.userAgent.match(/(iPod|iPhone|iPad|Android)/)) {
+                $('#ios-notice').removeClass('hidden');
+                $('.parallax-container').height($(window).height() * 0.5 | 0);
+            } else {
+                $(window).resize(function () {
+                    var parallaxHeight = 400;
+                    $('.parallax-container').height(parallaxHeight);
+                }).trigger('resize');
+            }
+        });
+    </script>
+    <script src="{% static 'js/parallax.min.js' %}"></script>
+
+
+</head>
+
+<body>
+
+    <section id="header" class="clearfix" style="background-image: url('{% static "img/1.jfif" %}')">
+        <div class="col-sm-12 header clearfix">
+            <p><a href={% url 'home_page' %}><span class="header_inner">Ko'rgazmalar</span> markazi</a></p>
+        </div>
+        <div class="col-sm-12 header_1 clearfix cd-secondary-nav">
+            <div class="header_1_center clearfix">
+                <nav class="navbar" role="navigation">
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle" data-toggle="collapse"
+                            data-target="#bs-example-navbar-collapse-1">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                    </div>
+                    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                        <ul class="nav navbar-nav">
+                            {% block nav %}
+                            {% endblock nav %}
+                        </ul>
+                    </div>
+                </nav>
+            </div>
+
+        </div>
+        {% block hero %}
+        {% endblock hero %}
+    </section>
+    {% block content %}
+    {% endblock content %}
+
+    <section id="footer" class="clearfix">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12 footer">
+                    <p><a href="#"><span class="header_inner">Ko'rgazmalar</span> markazi</a></p>
+                    <h5>Sizning ishingiz ham shu yerda bo'lishi mumkin</h5>
+                </div>
+                <div class="col-sm-12 footer_n">
+                    <div class="col-sm-2">
+                        <div class="footer_n1">
+                            <h3>Ma'lumotlar</h3>
+                            <ul>
+                                <li class="col-sm-12 col-xs-6 space_left"><a class="col" href="#">Biz haqimizda</a></li>
+                                <li class="col-sm-12 col-xs-6 space_left"><a class="col" href="#">Bog'lanish</a></li>
+                                <li class="col-sm-12 col-xs-6 space_left"><a class="col" href="#">Qoidalar</a>
+                                </li>
+                                <li class="col-sm-12 col-xs-6 space_left"><a class="col" href="#">Yordam & Faq</a></li>
+                                <li class="col-sm-12 col-xs-6 space_left"><a class="col" href="#">Galareya</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="footer_n1 clearfix">
+                            <h3 class="mgt col">Bosh ofis</h3>
+                            <p class="col">Toshkent, O'zbekiston<br>
+                                info@gmail.com<br>
+                                123 4567 89 01</p>
+                            <p class="col">Dush-Juma: 9:30 - 21:00<br>
+                                Shanba: 10:00 - 15:00</p>
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="footer_n1 clearfix">
+                            <h3 class="mgt col">Takliflaringizni yuboring!</h3>
+                            <input type="text" class="form-control" placeholder="Emailingizni kiriting...">
+                            <h5><a class="button" href="#">Yuborish</a></h5>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="footer_last" class="clearfix">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12 footer_last">
+                    <p class="website">
+                        <script>document.write(new Date().getFullYear())</script> Ko'rgazmalar markazi. Barcha huquqlar
+                        himoyalangan.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+    <script>
+        $(document).ready(function () {
+            var secondaryNav = $('.cd-secondary-nav'),
+                secondaryNavTopPosition = secondaryNav.offset().top;
+            navbar_height = document.querySelector('.navbar').offsetHeight;
+
+            $(window).on('scroll', function () {
+                if ($(window).scrollTop() > secondaryNavTopPosition + navbar_height) {
+                    secondaryNav.addClass('is-fixed');
+                    document.body.style.paddingTop = navbar_height + 'px';
+
+                } else {
+                    secondaryNav.removeClass('is-fixed');
+                    document.body.style.paddingTop = '0'
+                }
+            });
+
+        });
+    </script>
+
+    {% block custom-script %}
+    {% endblock custom-script %}
+
+</body>
+
+</html>

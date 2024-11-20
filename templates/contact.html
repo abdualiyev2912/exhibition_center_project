@@ -1,0 +1,82 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load widget_tweaks %}
+
+{% block title %}
+Bog'lanish
+{% endblock title%}
+
+{% block nav %}
+<li><a href="{% url 'home_page' %}">Bosh sahifa</a></li>
+<li><a href="{% url 'aboutus_page' %}">Biz haqimizda</a></li>
+<li><a href="{% url 'gallery_page' %}">Galareya</a></li>
+<li><a class="active_1" href="{% url 'contact_page' %}">Boglanish</a></li>
+{% endblock nav %}
+
+{% block content %}
+<section id="about_top" class="clearfix">
+	<div class="container">
+		<div class="row">
+			<div class="col-sm-12 about_top">
+				<p>Bog'lanish</p>
+			</div>
+		</div>
+	</div>
+</section>
+<section id="contact" class="clearfix">
+	<div class="container">
+		<div class="row">
+			<div class="col-sm-12 contact">
+				<p>Sizning takliflaringiz biz uchun muhim!</p>
+				<h4>Biz bilan bog'laning</h4>
+			</div>
+			<form id="contact_form" method="post">
+				{% csrf_token %}
+				<div class="col-sm-12 contact_top clearfix">
+					<div class="col-sm-6 contact_top_center">
+						{% if form.errors %}
+						<ul class="error-list">
+							{% for field, errors in form.errors.items %}
+							{% for error in errors %}
+							<li>{{ field }}: {{ error }}</li>
+							{% endfor %}
+							{% endfor %}
+						</ul>
+						{% endif %}
+						<h5>To'liq ism</h5>
+						{{ form.full_name|add_class:"form-control_4" }}
+						<h5>Email</h5>
+						{{ form.email|add_class:"form-control_4" }}
+						<h5>Mavzu</h5>
+						{{ form.theme|add_class:"form-control_4" }}
+						<h5>Izoh</h5>
+						{{ form.description|attr:"rows:1"|attr:"cols:40"|add_class:"form-control_5" }}
+						<p onclick="document.getElementById('contact_form').submit()"><a>Yuborish</a></p>
+					</div>
+					<div class="col-sm-6 cont_n">
+						<iframe
+							src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d114964.53925916665!2d-80.29949920266738!3d25.782390733064336!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x88d9b0a20ec8c111%3A0xff96f271ddad4f65!2sMiami%2C+FL%2C+USA!5e0!3m2!1sen!2sin!4v1530774403788"
+							width="100%" height="500px" frameborder="0" style="border:0" allowfullscreen=""></iframe>
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>
+</section>
+{% endblock content %}
+
+{% block custom-script %}
+<script>
+    function show_message(s){
+        alert(s);
+    }
+</script>
+
+{% if messages %}
+    {% for message in messages %}
+        <script>
+            show_message("{{ message|escapejs }}");
+        </script>
+    {% endfor %}
+{% endif %}
+{% endblock custom-script %}

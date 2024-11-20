@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+Galareya
+{% endblock title %}
+
+{% block nav %}
+<li><a href="{% url 'home_page' %}">Bosh sahifa</a></li>
+<li><a href="{% url 'aboutus_page' %}">Biz haqimizda</a></li>
+<li><a class="active_1" href="{% url 'gallery_page' %}">Galareya</a></li>
+<li><a href="{% url 'contact_page' %}">Boglanish</a></li>
+{% endblock nav %}
+
+{% block content %}
+<section id="about_top" class="clearfix">
+	<div class="container">
+		<div class="row">
+			<div class="col-sm-12 about_top">
+				<p>Galareya</p>
+			</div>
+		</div>
+	</div>
+</section>
+<section id="galary" class="clearfix">
+	<div class="container">
+		<div class="row">
+			<div class="col-sm-12 galary">
+			</div>
+			<div class="col-sm-12 galary_top">
+				{% for exhibition in object_list %}
+				<div class="col-sm-4 galary_top_left">
+					<div class="grid">
+						<figure class="effect-zoe">
+							<img src="{{ exhibition.image.url }}" alt="{{ exhibition.name }}" />
+							<figcaption>
+								<h2>{{ exhibition.name }}</h2>
+								<p class="icon-links">
+									<a href="#"><span class="icon-heart"></span></a>
+									<a href="#"><span class="icon-eye"></span></a>
+									<a href="#"><span class="icon-paper-clip"></span></a>
+								</p>
+								<p class="description">{{ exhibition.description }}</p>
+							</figcaption>
+						</figure>
+					</div>
+				</div>
+				{% empty %}
+				<p>Hozirda ko‘rsatish uchun hech qanday ko‘rgazma mavjud emas.</p>
+				{% endfor %}
+			</div>
+		</div>
+
+	</div>
+</section>
+{% endblock content %}

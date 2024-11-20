@@ -1,0 +1,298 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+Bosh sahifa
+{% endblock title %}
+
+{% block hero %}
+<div class="col-sm-12 header_2 clearfix">
+	<p><span class="header_3_inner">Nulla quis sem</span><span class="header_main_inner"><span
+				class="header_4_inner">K</span>o'rgazmalar markazi</span><span class="header_5_inner">Tez
+			kunda</span><span class="header_6_inner">Sizni va yaqinlaringizni kutib qolamiz</span></p>
+</div>
+{% endblock hero %}
+
+{% block nav %}
+<li><a class="active_1" href="{% url 'home_page' %}">Bosh sahifa</a></li>
+<li><a href="{% url 'aboutus_page' %}">Biz haqimizda</a></li>
+<li><a href="{% url 'gallery_page' %}">Galareya</a></li>
+<li><a href="{% url 'contact_page' %}">Boglanish</a></li>
+{% endblock nav %}
+
+
+{% block content %}
+
+<section id="top" class="clearfix">
+	<div class="container">
+		<div class="row">
+			<div class="col-sm-12 top">
+				<div class="col-sm-6 top_left">
+					<div class="top_left_1">
+						<h3><span class="top_left_inner">B</span>iz haqimizda</h3>
+						<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloremque accusantium ad obcaecati
+							nam, ipsa rem nemo dicta impedit quae est inventore corrupti culpa reiciendis consequatur
+							magnam veritatis ab. Perspiciatis, ad.</p>
+						<p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nostrum maxime, doloremque dolorem,
+							voluptatibus optio aspernatur ea quisquam culpa error at et dignissimos architecto corporis
+							iusto sed quia vel? Culpa, illo.</p>
+						<h4><a href="#">Ko'proq</a></h4>
+					</div>
+					<div class="top_left_2 clearfix">
+						<div class="col-sm-12 top_left_2_main">
+							<div class="col-sm-6 top_left_2_main_left">
+								<h2>156</h2>
+								<hr class="hr_2">
+								<h4>Xodimlar</h4>
+							</div>
+							<div class="col-sm-6 top_left_2_main_left">
+								<h2>482</h2>
+								<hr class="hr_2">
+								<h4>Ko'rgazmalar</h4>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-sm-6 top_right">
+					<div class="top_right_1">
+						<img src="{% static 'img/2.jfif' %}" alt="img" class="iw">
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+<section id="center" class="clearfix">
+	<div class="col-sm-12 center">
+		<p>Ko'rgazmalar</p>
+	</div>
+	<div class="col-sm-12 center_1">
+		{% for exhibition in object_list|slice:":4" %}
+		<div class="col-sm-3 center_1_left">
+			<div class="center_1_left_main">
+				<div class="ih-item square colored effect4">
+					<a href="#">
+						<div class="img">
+							<img src="{{ exhibition.image.url }}" alt="{{ exhibition.title }}">
+						</div>
+						<div class="mask1"></div>
+						<div class="mask2"></div>
+						<div class="info">
+							<h3>{{ exhibition.title }}</h3>
+							<p>{{ exhibition.description }}</p>
+						</div>
+					</a>
+				</div>
+				<div class="center_1_left_bottom">
+					<p><a href="#">{{ exhibition.author }}</a></p>
+					<h5>Torquent Per</h5>
+				</div>
+			</div>
+		</div>
+	{% empty %}
+		<p>Hozirda ko‘rsatish uchun hech qanday ko‘rgazma mavjud emas.</p>
+	{% endfor %}
+	
+</section>
+<section id="middle" class="clearfix">
+	<div class="col-sm-12 middle">
+		<p>Galareya</p>
+	</div>
+
+	<div class="col-sm-12 middle_1">
+		
+		{% for exhibition in object_list|slice:"5:7" %}
+		<div class="col-sm-6 middle_1_left">
+			<div class="middle_1_left_main">
+				<article>
+					<div class="panel panel-default">
+						<div class="panel-body">
+							<a href="{{ exhibition.image.url }}"  title="Nature Portfolio" class="zoom" data-title="Amazing Nature"
+								data-footer="The beauty of nature" data-type="image" data-toggle="lightbox">
+								<img src="{{ exhibition.image.url }}" width="100%" alt="Nature Portfolio">
+								<span class="overlay"><i class="glyphicon glyphicon-fullscreen"></i></span>
+							</a>
+						</div>
+					</div>
+				</article>
+			</div>
+		</div>		
+{% endfor %}
+	</div>
+	<div class="col-sm-12 middle_1">
+		{% for exhibition in object_list|slice:"7:9" %}
+		<div class="col-sm-6 middle_1_left">
+			<div class="middle_1_left_main">
+				<article>
+					<div class="panel panel-default">
+						<div class="panel-body">
+							<a href="{{ exhibition.image.url }}"  title="Nature Portfolio" class="zoom" data-title="Amazing Nature"
+								data-footer="The beauty of nature" data-type="image" data-toggle="lightbox">
+								<img src="{{ exhibition.image.url }}" width="100%" alt="Nature Portfolio">
+								<span class="overlay"><i class="glyphicon glyphicon-fullscreen"></i></span>
+							</a>
+						</div>
+					</div>
+				</article>
+			</div>
+		</div>		
+	{% empty %}
+	<p>Hozirda ko‘rsatish uchun hech qanday ko‘rgazma mavjud emas.</p>
+{% endfor %}
+	</div>
+</section>
+<section id="planning" class="clearfix">
+	<div class="container">
+		<div class="row">
+			<div class="col-sm-12 planning">
+				<p>Ish kunlari</p>
+			</div>
+			<div class="col-sm-12 planning_top">
+				<div class="col-sm-4 planning_top_left">
+					<div class="plannig_top_main">
+						<div class="planning_top_left_1">
+							<div class="ih-item square colored effect15 left_to_right"><a href="#">
+									<div class="img"><img src="{% static 'img/3.jpg' %}" alt="img"></div>
+									<div class="info">
+										<h3>Lorem, ipsum.</h3>
+										<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rerum, libero aliquid. Nobis, blanditiis autem temporibus quibusdam aut, odit commodi accusantium similique voluptas optio animi ullam quod minus amet accusamus molestiae!
+										</p>
+									</div>
+								</a></div>
+						</div>
+						<div class="planning_top_left_2">
+							<p><a href="#">Har hafta</a></p>
+							<h5>Seshanba, 8:00 - 16:00 </h5>
+						</div>
+					</div>
+				</div>
+				<div class="col-sm-4 planning_top_left">
+					<div class="plannig_top_main">
+						<div class="planning_top_left_1">
+							<div class="ih-item square colored effect15 left_to_right"><a href="#">
+									<div class="img"><img src="{% static 'img/5.jfif' %}" alt="img"></div>
+									<div class="info">
+										<h3>Lorem, ipsum.</h3>
+										<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rerum, libero aliquid. Nobis, blanditiis autem temporibus quibusdam aut, odit commodi accusantium similique voluptas optio animi ullam quod minus amet accusamus molestiae!
+										</p>
+									</div>
+								</a></div>
+						</div>
+						<div class="planning_top_left_2">
+							<p><a href="#">Har hafta</a></p>
+							<h5>Juma, 8:00 - 16:00 </h5>
+						</div>
+					</div>
+				</div>
+				<div class="col-sm-4 planning_top_left">
+					<div class="plannig_top_main">
+						<div class="planning_top_left_1">
+							<div class="ih-item square colored effect15 left_to_right"><a href="#">
+									<div class="img"><img src="{% static 'img/4.jpg' %}" alt="img"></div>
+									<div class="info">
+										<h3>Lorem, ipsum.</h3>
+										<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rerum, libero aliquid. Nobis, blanditiis autem temporibus quibusdam aut, odit commodi accusantium similique voluptas optio animi ullam quod minus amet accusamus molestiae!
+										</p>
+									</div>
+								</a></div>
+						</div>
+						<div class="planning_top_left_2">
+							<p><a href="#">Har hafta</a></p>
+							<h5>Shanba, 8:00 - 16:00 </h5>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col-sm-12 panning_bottom">
+				<p><a href="#">view all</a></p>
+			</div>
+		</div>
+	</div>
+</section>
+<section id="news" class="clearfix">
+	<div class="container">
+		<div class="row">
+			<div class="col-sm-12 news">
+				<p>Yangiliklar</p>
+			</div>
+			<div class="col-sm-12 news_main">
+				<div class="col-sm-4">
+					<div class="news_main_left_top">
+						<div class="news_main_left_top_1">
+							<div class="ih-item square colored effect13 left_to_right"><a href="#">
+									<div class="img"><img src="{% static 'img/6.jfif' %}" alt="img"></div>
+									<div class="info">
+										<h3>Lorem, ipsum.</h3>
+										<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatem dolorem illum tempore distinctio? Quisquam nam animi expedita assumenda iure architecto corrupti, hic, necessitatibus porro nostrum ex minus. Perspiciatis, quaerat fugiat.
+										</p>
+									</div>
+								</a></div>
+						</div>
+						<div class="news_main_left_top_2">
+							<p><a href="#">Lorem, ipsum dolor.</a></p>
+							<h5>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quia ipsum dolore eaque nihil nulla excepturi, inventore expedita mollitia iure dolorum, recusandae explicabo, harum ut laboriosam quis ducimus error! Exercitationem, error....</h5>
+						</div>
+					</div>
+				</div>
+				<div class="col-sm-4">
+					<div class="news_main_left_top">
+						<div class="news_main_left_top_1">
+							<div class="ih-item square colored effect13 left_to_right"><a href="#">
+									<div class="img"><img src="{% static 'img/8.jfif' %}" alt="img"></div>
+									<div class="info">
+										<h3>Lorem, ipsum.</h3>
+										<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatem dolorem illum tempore distinctio? Quisquam nam animi expedita assumenda iure architecto corrupti, hic, necessitatibus porro nostrum ex minus. Perspiciatis, quaerat fugiat.
+										</p>
+									</div>
+								</a></div>
+						</div>
+						<div class="news_main_left_top_2">
+							<p><a href="#">Lorem, ipsum dolor.</a></p>
+							<h5>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quia ipsum dolore eaque nihil nulla excepturi, inventore expedita mollitia iure dolorum, recusandae explicabo, harum ut laboriosam quis ducimus error! Exercitationem, error....</h5>
+						</div>
+					</div>
+				</div>
+				<div class="col-sm-4">
+					<div class="news_main_left_top">
+						<div class="news_main_left_top_1">
+							<div class="ih-item square colored effect13 left_to_right"><a href="#">
+									<div class="img"><img src="{% static 'img/7.jfif' %}" alt="img"></div>
+									<div class="info">
+										<h3>Lorem, ipsum.</h3>
+										<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatem dolorem illum tempore distinctio? Quisquam nam animi expedita assumenda iure architecto corrupti, hic, necessitatibus porro nostrum ex minus. Perspiciatis, quaerat fugiat.
+										</p>
+									</div>
+								</a></div>
+						</div>
+						<div class="news_main_left_top_2">
+							<p><a href="#">Lorem, ipsum dolor.</a></p>
+							<h5>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quia ipsum dolore eaque nihil nulla excepturi, inventore expedita mollitia iure dolorum, recusandae explicabo, harum ut laboriosam quis ducimus error! Exercitationem, error....</h5>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	</div>
+</section>
+{% endblock content %}
+
+{% block custom-script %}
+<script>
+	$(document).ready(function () {
+		$('i.glyphicon-thumbs-up, i.glyphicon-thumbs-down').click(function () {
+			var $this = $(this),
+				c = $this.data('count');
+			if (!c) c = 0;
+			c++;
+			$this.data('count', c);
+			$('#' + this.id + '-bs3').html(c);
+		});
+		$(document).delegate('*[data-toggle="lightbox"]', 'click', function (event) {
+			event.preventDefault();
+			$(this).ekkoLightbox();
+		});
+	});
+
+</script>
+{% endblock custom-script %}

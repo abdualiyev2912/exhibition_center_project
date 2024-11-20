@@ -1,0 +1,72 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+Biz haqimizda
+{% endblock title %}
+
+{% block nav %}
+<li><a href="{% url 'home_page' %}">Bosh sahifa</a></li>
+<li><a class="active_1" href="{% url 'aboutus_page' %}">Biz haqimizda</a></li>
+<li><a href="{% url 'gallery_page' %}">Galareya</a></li>
+<li><a href="{% url 'contact_page' %}">Boglanish</a></li>
+{% endblock nav %}
+
+{% block content %}
+<section id="about_top" class="clearfix">
+	<div class="container">
+		<div class="row">
+			<div class="col-sm-12 about_top">
+				<p>Biz haqimizda</p>
+			</div>
+		</div>
+	</div>
+</section>
+<section id="about_center" class="clearfix">
+	<div class="container">
+		<div class="row">
+			<div class="col-sm-12 about_center">
+				<p>Umumiy ma'lumotlar</p>
+			</div>
+			<div class="col-sm-12 about_center_1">
+				<div class="about_center_1_top text-center">
+					<img src="{% static 'img/1.jfif' %}" alt="img17" />
+				</div>
+			</div>
+			<div class="col-sm-12 about_center_2">
+					<div class="about_center_2_left_top">
+						<p>Lorem ipsum dolor sit amet.</p>
+						<h4>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Dolorum doloribus sapiente aut soluta numquam ipsum minima animi unde ipsam sed.</h4>
+						<h4>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ex, earum excepturi, iste illum ratione voluptas repellat sapiente nisi eaque ab a exercitationem, quibusdam itaque! Est cupiditate corrupti nihil? Corrupti, quasi!</h4>
+						<h4>In fact, we do not.</h4>
+						<h4>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Eius minima perspiciatis, quod est, tempore adipisci explicabo inventore sequi architecto, debitis praesentium fugiat assumenda ratione consequatur! Sint fugiat ducimus dolorem debitis qui repudiandae atque ab. Eos illo quod ratione dolorum perspiciatis at reiciendis corporis molestias doloribus suscipit officia nemo, explicabo rem ipsum non. Rerum voluptatem rem illo! Obcaecati nemo nulla consectetur nihil voluptatibus vero rem sequi odit magni ullam minus minima nostrum, modi quam amet aut at et numquam error quia quis doloremque molestiae eligendi. Doloribus tempora consectetur adipisci quo illum, accusantium aut ipsa nesciunt amet sunt asperiores voluptate omnis labore?</h4>
+					</div>
+			</div>
+		</div>
+	</div>
+</section>
+{% endblock content %}
+
+
+{% block custom-script %}
+<script>
+	$(document).ready(function () {
+		/*****Fixed Menu******/
+		var secondaryNav = $('.cd-secondary-nav'),
+			secondaryNavTopPosition = secondaryNav.offset().top;
+		navbar_height = document.querySelector('.navbar').offsetHeight;
+
+		$(window).on('scroll', function () {
+			if ($(window).scrollTop() > secondaryNavTopPosition + navbar_height) {
+				secondaryNav.addClass('is-fixed');
+				document.body.style.paddingTop = navbar_height + 'px';
+
+			} else {
+				secondaryNav.removeClass('is-fixed');
+				document.body.style.paddingTop = '0'
+			}
+		});
+
+	});
+</script>
+{% endblock custom-script %}
